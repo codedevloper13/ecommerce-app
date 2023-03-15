@@ -5,7 +5,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import ConnectDB from "./config/db.js";
-
+import authRoutes from "./routes/authRoutes.js";
 /**
  * Env  configure
  */
@@ -20,6 +20,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(morgan("dev"));
+
+//Routes
+app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (req, res) => {
 	res.send({ message: "I love you Programmer" });

@@ -14,9 +14,9 @@ export const registerController = async (req, res) => {
 		if (!password) {
 			return res.send({ error: "Password is Required" });
 		}
-		// if (password.length < 8) {
-		// 	return res.send({ error: "Please Type 8 Character Long Password" });
-		// }
+		if (password.length < 8) {
+			return res.send({ error: "Please Type 8 Character Long Password" });
+		}
 
 		if (!phone) {
 			return res.send({ error: "Phone is Required" });

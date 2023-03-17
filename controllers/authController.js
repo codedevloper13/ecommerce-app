@@ -116,7 +116,7 @@ export const loginController = async (req, res) => {
 
 //  Test Routes
 
-export const testController = (req, res) => {
+export const testController =  (req, res) => {
 	return res.status(200).send({
 		success: true,
 		message: "Working Routes",

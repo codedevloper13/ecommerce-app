@@ -3,7 +3,11 @@
 import "./App.css";
 
 function App() {
-	return <div className='App'>React App</div>;
+	return (
+		<>
+			<h1>Ecommerce App</h1>
+		</>
+	);
 }
 
 export default App;

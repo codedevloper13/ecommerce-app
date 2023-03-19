@@ -1,10 +1,26 @@
 /** @format */
 
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import { GiShoppingBag } from "react-icons/gi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
+	// Navigartion
+	const navigate = useNavigate();
+	const [auth, setAuth] = useAuth();
+	const handleLogout = () => {
+		setAuth({
+			...auth,
+			user: null,
+			token: "",
+		});
+		localStorage.removeItem("auth");
+		toast.success("Logout Successfully");
+		setTimeout(() => {
+			navigate("/login");
+		}, 1000);
+	};
 	return (
 		<>
 			<nav className='navbar navbar-expand-lg bg-body-tertiary'>
@@ -34,16 +50,28 @@ const Header = () => {
 									Category
 								</NavLink>
 							</li>
-							<li className='nav-item'>
-								<NavLink className='nav-link' to='/register'>
-									Register
-								</NavLink>
-							</li>
-							<li className='nav-item'>
-								<NavLink className='nav-link' to='/login'>
-									Login
-								</NavLink>
-							</li>
+							{!auth.user ? (
+								<>
+									<li className='nav-item'>
+										<NavLink className='nav-link' to='/register'>
+											Register
+										</NavLink>
+									</li>
+									<li className='nav-item'>
+										<NavLink className='nav-link' to='/login'>
+											Login
+										</NavLink>
+									</li>
+								</>
+							) : (
+								<>
+									<li className='nav-item'>
+										<NavLink onClick={handleLogout} className='nav-link'>
+											Logout
+										</NavLink>
+									</li>
+								</>
+							)}
 							<li className='nav-item'>
 								<NavLink className='nav-link' to='/cart'>
 									Cart (0)

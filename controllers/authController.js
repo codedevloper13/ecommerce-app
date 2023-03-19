@@ -7,23 +7,26 @@ export const registerController = async (req, res) => {
 	try {
 		const { name, email, password, phone, address } = req.body;
 		if (!name) {
-			return res.send({ error: "Name is Required" });
+			return res.send({ message: "Name is Required" });
 		}
 		if (!email) {
-			return res.send({ error: "Email is Required" });
+			return res.send({ message: "Email is Required" });
 		}
 		if (!password) {
-			return res.send({ error: "Password is Required" });
+			return res.send({ message: "Password is Required" });
 		}
 		if (password.length < 8) {
-			return res.send({ error: "Please Type 8 Character Long Password" });
+			return res.send({ message: "Please Type 8 Character Long Password" });
 		}
 
 		if (!phone) {
-			return res.send({ error: "Phone is Required" });
+			return res.send({ message: "Phone is Required" });
+		}
+		if (phone.length < 10) {
+			return res.send({ message: "Opps Please Provide Valid Format" });
 		}
 		if (!address) {
-			return res.send({ error: "Address is Required" });
+			return res.send({ message: "Address is Required" });
 		}
 
 		//  Check the User Through Email
@@ -31,7 +34,7 @@ export const registerController = async (req, res) => {
 		// Check the Existing User or not
 		if (existingUser) {
 			return res.status(200).send({
-				success: true,
+				success: false,
 				message: "Already Register Please login",
 			});
 		}
@@ -97,6 +100,7 @@ export const loginController = async (req, res) => {
 			success: true,
 			message: "Login successfully",
 			user: {
+				_id: user._id,
 				name: user.name,
 				email: user.email,
 				address: user.address,
@@ -116,7 +120,7 @@ export const loginController = async (req, res) => {
 
 //  Test Routes
 
-export const testController =  (req, res) => {
+export const testController = (req, res) => {
 	return res.status(200).send({
 		success: true,
 		message: "Working Routes",

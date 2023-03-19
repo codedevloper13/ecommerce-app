@@ -101,3 +101,47 @@ font-family: 'Poppins',sans-serif;
 }
 
 /* =================================Contact us Page Page End=============================== */
+
+/* =================================Register Page Start=============================== */
+.register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    flex-direction: column;
+}
+
+.register_form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.page_header {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.btn-common {
+    background-color: #ffa41c;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+textarea {
+    height: 130px;
+}
+
+/* =================================Register us Page Page End=============================== */
